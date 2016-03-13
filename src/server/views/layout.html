@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+
+        <div>
+          <div class="navbar-header">
+            <a class="navbar-brand">Hashing Twitter</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if profile %}
+            <li><a href="/auth/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            {% else %}
+            <li><a href="/auth/twitter"><span class="glyphicon glyphicon-log-in"></span> Twitter Login</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+  </body>
+</html>
