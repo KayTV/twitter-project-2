@@ -35,15 +35,15 @@ var stream;
 // });
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Break It Apart!!', profile: req.user, tweets: tweets1, twitters: tweets2 })
+  res.render('index', { title: 'Smashtag!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
-router.get('/tweets', function(req, res, next) {
-  res.render('tweets', { title: 'Twitter & Passport', profile: req.user, tweets: tweets1, twitters: tweets2 })
+router.get('/savedcharts', function(req, res, next) {
+  res.render('savedcharts', { title: 'Saved Charts!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
 router.get('/charts', function(req, res, next) {
-  res.render('charts', { title: 'Twitter & Passport', profile: req.user, tweets: tweets1, twitters: tweets2 })
+  res.render('charts', { title: 'Match Up Your Hashtags', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
 router.post('/charts', function(req, res, next) {

@@ -12,11 +12,14 @@
 
         <div>
           <div class="navbar-header">
-            <a class="navbar-brand">Hashing Twitter</a>
+            <a class="navbar-brand">Smashtag!</a>
           </div>
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/charts">Charts</a></li>
+            {% if profile %}
+            <li><a href="/savedcharts">Your Saved Results</a></li>
+            {% endif %}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if profile %}
