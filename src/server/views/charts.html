@@ -21,7 +21,7 @@
    </div>
  {% endif %}
 <section>
-   <form method="post">
+   <form method="post" style="margin-top: 80px;">
      <div class="row">
        <div class="col-xs-4">
           <input type="text" class="form-control" name="twit" placeholder="Enter In Hashtag">
@@ -34,24 +34,12 @@
         </div>
       </div>
       <button type="submit" class="btn btn-success" id="submit_form">Submit</button>
-      <a href="/stopTweets" class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</a>
     </form>
+    <a href="/stopTweets" ><button class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</button></a>
 </section>
 
-  <div id="test" class="col-xs-6">
-   <!-- {% for tweet in tweets %}
-    <div class="tweetbox">
-      <h3>{{tweet}}</h3>
-    </div>
-  {% endfor %} -->
-  </div>
-  <div id="test2" class="col-xs-6">
-    <!-- {% for twitter in twitters %}
-     <div class="tweetbox">
-       <h3>{{twitter}}</h3>
-     </div>
-   {% endfor %} -->
-  </div>
+  <div id="test" class="col-xs-6"></div>
+  <div id="test2" class="col-xs-6"></div>
  </div>
 
 {% endblock %}

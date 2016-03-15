@@ -5,10 +5,13 @@
 
 {% block content %}
 
-  <div class="container">
+  <header class="indexheader">
+    <div>
+      <h2 class="headertext">{{ title }}</h2>
+    </div>
+  </header>
 
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+  <div class="container">
 
  {% if profile %}
    <hr>
@@ -18,10 +21,11 @@
      </div>
 
      <div class="col-xs-8">
-       <h3>{{ profile.display_name }}</h3>
+       <h3>Welcome {{ profile.display_name }}!</h3>
      </div>
    </div>
  {% endif %}
+  <h3>Graph Out Your Competition With Smashtag!</h3>
  </div>
 
 {% endblock %}

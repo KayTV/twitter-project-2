@@ -2,9 +2,12 @@
 
 $(document).on('ready', function() {
   console.log('sanity check!');
-  setInterval(getTweets, 2000);
-  tweetGraph();
-  tweetGraph2();
+  var timer = null;
+  timer = setInterval(getTweets, 2000);
+  $('#stop_tweet').on('click', function(){
+     clearInterval(timer);
+   })
+
 });
 
 function getTweets(){
@@ -16,9 +19,12 @@ function getTweets(){
     var tweets = response.tweets;
     var twitters = response.twitters;
     $('#test').html('');
+    $('#test2').html('');
     for (var i=0; i<tweets.length; i++) {
       $('#test').append('<div class="tweetbox"><h3>'+tweets[i]+'</h3></div>');
-      $('#test2').append('<div class="tweetbox"><h3>'+twitters[i]+'</h3></div>');
+    }
+    for(var j=0; j<twitters.length; j++) {
+      $('#test2').append('<div class="tweetbox"><h3>'+twitters[j]+'</h3></div>');
     }
   });
 }

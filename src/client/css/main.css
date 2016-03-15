@@ -1,7 +1,24 @@
 body {
-  padding: 50px;
+  /*padding: 50px;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
+}
+
+.indexheader{
+    background: url("http://travellerguidance.com/wp-content/uploads/2013/10/rocky-mountains.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+.headertext {
+  padding-top: 80px;
+  color: white;
+  font-size: 80px;
+  text-shadow: 2px 2px grey;
 }
 
 .navbar {

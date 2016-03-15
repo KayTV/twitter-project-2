@@ -13,11 +13,11 @@ var channels = {
   'stream1': 'javascript',
   'stream2': 'css'
 };
-
+var knex = require('../../../db/knex');
 var tweets1 = [];
 var tweets2 = [];
-var tweet = channels.stream1;
-var tweet2 = channels.stream2;
+var tweet;
+var tweet2;
 console.log(tweet);
 console.log(tweet2);
 var stream;
@@ -54,6 +54,8 @@ router.post('/charts', function(req, res, next) {
 });
 
 router.get('/stoptweets', function(req, res, next){
+  // tweet = channels.stream1;
+  // tweet2 = channels.stream2;
   stopTweets();
   res.redirect('/charts')
 })
@@ -88,12 +90,12 @@ function restart(hashtag, hashtag2) {
     }
     console.log(tweet.text);
   })
-
 }
 
-function stopTweets() {
-    stream.stop();//closes the stream connected to Twitter
-  	console.log('>stream closed after 100 seconds');
+function stopTweets(tweet, tweet2) {
+    stream.stop();
+    // stream.stop(tweet2);//closes the stream connected to Twitter
+    // console.log(tweets2);
 }
 
 
