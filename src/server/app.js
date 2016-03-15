@@ -6,9 +6,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
+// var cookieSession = require('cookie-session');
 var session = require('express-session');
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
+var Twitter = require('twitter');
+var client = new Twitter({
+  consumer_key: process.env.TWITTER_API_KEY,
+  consumer_secret: process.env.TWITTER_SECRET_KEY,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+});
 var knex = require('../../db/knex');
 if ( !process.env.NODE_ENV ) { require('dotenv').config(); }
 
@@ -48,8 +56,8 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // above your routes
 passport.use(new TwitterStrategy({
-  consumerKey: process.env.TWITTER_API_KEY,
-  consumerSecret: process.env.TWITTER_SECRET_KEY,
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callbackURL: "http://localhost:3000/auth/twitter/callback",
   state: true
 }, function(accessToken, refreshToken, profile, done) {
@@ -70,15 +78,6 @@ passport.use(new TwitterStrategy({
       }
     });
 }));
-//   process.nextTick(function () {
-//     var userInfo = {
-//       id: profile.id,
-//       displayName: profile.displayName,
-//       avatar_url: profile.photos[0].value
-//     };
-//     return done(null, userInfo);
-//   });
-// }));
 
 passport.serializeUser(function(user, done) {
   //later this will be where you selectively send to the browser

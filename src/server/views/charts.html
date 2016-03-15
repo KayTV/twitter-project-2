@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+<header class="chartsheader"></header>
+
+  <div class="container">
+
+ {% if profile %}
+   <hr>
+   <div class="row">
+     <div class="col-xs-4">
+       <img style="float: right;" src="{{ profile.avatar_url }}" alt="{{ profile.display_name }}">
+     </div>
+
+     <div class="col-xs-8">
+       <h3>Welcome {{ profile.display_name }}</h3>
+     </div>
+   </div>
+ {% endif %}
+<section>
+   <form method="post">
+     <div class="row">
+       <div class="col-xs-4">
+          <input type="text" class="form-control" name="twit" placeholder="Enter In Hashtag">
+        </div>
+        <div class="col-xs-4">
+          <p style="text-align: center;">VS.</p>
+        </div>
+        <div class="col-xs-4">
+          <input type="text" class="form-control" name="twit2" placeholder="Enter In Hashtag">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" id="submit_form">Submit</button>
+      <a href="/stopTweets" class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</a>
+    </form>
+</section>
+
+  <div id="test" class="col-xs-6">
+   <!-- {% for tweet in tweets %}
+    <div class="tweetbox">
+      <h3>{{tweet}}</h3>
+    </div>
+  {% endfor %} -->
+  </div>
+  <div id="test2" class="col-xs-6">
+    <!-- {% for twitter in twitters %}
+     <div class="tweetbox">
+       <h3>{{twitter}}</h3>
+     </div>
+   {% endfor %} -->
+  </div>
+ </div>
+
+{% endblock %}
