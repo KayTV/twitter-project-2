@@ -14,6 +14,18 @@ body {
     background-attachment: fixed;
 }
 
+.chartsheader{
+    background: url("http://cdn.c.photoshelter.com/img-get/I0000C5tH5AJRbX8/s/860/860/Rocky-Mountain-Pictures-Moraine-Lake-Sunrise-Banff-National-Park.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 600px;
+    width: 100%;
+    background-attachment: fixed;
+    font-family: silkscreen;
+    padding-top: -200px;
+}
+
 .headertext {
   padding-top: 80px;
   color: white;

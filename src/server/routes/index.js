@@ -54,10 +54,7 @@ router.post('/charts', function(req, res, next) {
 });
 
 router.get('/stoptweets', function(req, res, next){
-  // tweet = channels.stream1;
-  // tweet2 = channels.stream2;
   stopTweets();
-  res.redirect('/charts')
 })
 
 router.get('/tweetsjson', function(req, res, next) {
@@ -92,10 +89,9 @@ function restart(hashtag, hashtag2) {
   })
 }
 
-function stopTweets(tweet, tweet2) {
+function stopTweets() {
     stream.stop();
     // stream.stop(tweet2);//closes the stream connected to Twitter
-    // console.log(tweets2);
 }
 
 

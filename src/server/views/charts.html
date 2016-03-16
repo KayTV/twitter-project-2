@@ -21,25 +21,26 @@
    </div>
  {% endif %}
 <section>
-   <form method="post" style="margin-top: 80px;">
+   <form method="post">
      <div class="row">
        <div class="col-xs-4">
-          <input type="text" class="form-control" name="twit" placeholder="Enter In Hashtag">
+          <input id="twit" type="text" class="form-control" name="twit" placeholder="Enter In Hashtag">
         </div>
         <div class="col-xs-4">
           <p style="text-align: center;">VS.</p>
         </div>
         <div class="col-xs-4">
-          <input type="text" class="form-control" name="twit2" placeholder="Enter In Hashtag">
+          <input id="twit2" type="text" class="form-control" name="twit2" placeholder="Enter In Hashtag">
         </div>
       </div>
       <button type="submit" class="btn btn-success" id="submit_form">Submit</button>
+      <a href="/stoptweets" class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</a>
     </form>
-    <a href="/stopTweets" ><button class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</button></a>
 </section>
 
-  <div id="test" class="col-xs-6"></div>
-  <div id="test2" class="col-xs-6"></div>
+  <div id="examplegraph" style="min-width: 310px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+
+</div>
  </div>
 
 {% endblock %}
