@@ -35,6 +35,9 @@
       </div>
       <button type="submit" class="btn btn-success" id="submit_form">Submit</button>
       <a href="/stoptweets" onclick="stopTimer()" class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</a>
+      {% if profile%}
+      <a href="/save"  class="btn btn-primary" id="save">Save Searches</a>
+      {% endif %}
     </form>
 </section>
 

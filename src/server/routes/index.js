@@ -34,6 +34,14 @@ var stream;
 //   client.currentstream = stream;
 // });
 
+// function authorize(req,res, next){
+//   if (!req.user){
+//     next();
+//   } else {
+//     res.status(403).send('Forbidden');
+//   }
+// }
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Smashtag!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
@@ -46,12 +54,18 @@ router.get('/charts', function(req, res, next) {
   res.render('charts', { title: 'Match Up Your Hashtags', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
+router.post('/')
+
 router.post('/charts', function(req, res, next) {
   tweet = req.body.twit;
   tweet2 = req.body.twit2
   restart(tweet, tweet2);
   res.redirect('/charts')
 });
+
+// router.post('/save', function(req.res.next){
+  
+// })
 
 router.get('/stoptweets', function(req, res, next){
   stopTweets();
