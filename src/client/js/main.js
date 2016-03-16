@@ -2,13 +2,12 @@
 
 $(document).on('ready', function() {
   console.log('sanity check!');
-  var timer = null;
-  timer = setInterval(getTweets, 2000);
-  $('#stop_tweet').on('click', function(){
-     clearInterval(timer);
-   })
-
+  window.tweetTimer = setInterval(getTweets, 2000);
 });
+
+function stopTimer(){
+  clearInterval(tweetTimer);
+};
 
 function getTweets(){
   $.ajax({
