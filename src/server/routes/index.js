@@ -43,6 +43,7 @@ var stream;
 // }
 
 router.get('/', function(req, res, next) {
+  console.log(req.user);
   res.render('index', { title: 'Smashtag!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
@@ -51,21 +52,42 @@ router.get('/savedcharts', function(req, res, next) {
 });
 
 router.get('/charts', function(req, res, next) {
+  console.log(req.user);
   res.render('charts', { title: 'Match Up Your Hashtags', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
 router.post('/')
 
 router.post('/charts', function(req, res, next) {
+  console.log(req.user);
   tweet = req.body.twit;
   tweet2 = req.body.twit2
+
+  // knex('saved_hashes').insert({
+  //   hash1: req.body.twit,
+  //   hash2: req.body.twit2,
+  //   hash3: null,
+  //   hash4: null,
+  //   hash5: null,
+  //   user_id: req.user.id
+  // })
   restart(tweet, tweet2);
+
   res.redirect('/charts')
 });
 
-// router.post('/save', function(req.res.next){
-  
-// })
+// router.post('/save', function(req, res, next){
+//   var id = req.user.id
+//   knex('saved_hashes').insert({
+//     hash1: req.body.twit,
+//     hash2: req.body.twit2,
+//     hash3: null,
+//     hash4: null,
+//     hash5: null,
+//     user_id: id
+//   });
+//   res.redirect('/');
+// });
 
 router.get('/stoptweets', function(req, res, next){
   stopTweets();
