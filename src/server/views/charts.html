@@ -24,26 +24,30 @@
    <form method="post">
      <div class="row">
        <div class="col-xs-4">
-          <input id="twit" type="text" class="form-control" name="twit" placeholder="Enter In Hashtag">
+          <input id="twit" type="text" class="form-control" name="twit" placeholder="Enter In Hashtag" value="{{ input1 }}">
         </div>
         <div class="col-xs-4">
           <p style="text-align: center;">VS.</p>
         </div>
         <div class="col-xs-4">
-          <input id="twit2" type="text" class="form-control" name="twit2" placeholder="Enter In Hashtag">
+          <input id="twit2" type="text" class="form-control" name="twit2" placeholder="Enter In Hashtag" value="{{ input2 }}">
         </div>
       </div>
       <button type="submit" class="btn btn-success" id="submit_form">Submit</button>
       <a href="/stoptweets" onclick="stopTimer()" class="btn btn-danger" id="stop_tweet">Stop Tweet Stream</a>
+    </form>
       {% if profile%}
-      <a method="post" href="/save" class="btn btn-primary" id="save">Save Searches</a>
+    <form method="post">
+      <input type="submit" href="/save" class="btn btn-primary" id="save" value="Save Search">
+    </form>
       {% endif %}
-      </form>
     
 </section>
 
   <div id="examplegraph" style="min-width: 310px; height: 300px; max-width: 600px; margin: 0 auto"></div>
 
-</div>
+</div><br>
+
+<p id="tweets"></p><p id="twitters"></p><p id="total"></p>
 
 {% endblock %}

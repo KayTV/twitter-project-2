@@ -2,7 +2,7 @@
 
 $(document).on('ready', function() {
   console.log('sanity check!');
-  window.tweetTimer = setInterval(getTweets, 2000);
+  window.tweetTimer = setInterval(getTweets, 10);
 });
 
 function stopTimer(){
@@ -17,8 +17,9 @@ function getTweets(){
     console.log(response);
     var tweets = response.tweets.length;
     var twitters = response.twitters.length;
-    $('#test').html('');
-    $('#test2').html('');
+    $('#tweets').html(tweets);
+    $('#twitters').html(twitters);
+    $('#total').html(tweets+twitters);
     console.log(tweets, twitters);
     tweetGraph(tweets, twitters);
     // for (var i=0; i<tweets.length; i++) {
@@ -31,6 +32,8 @@ function getTweets(){
 };
 
 function tweetGraph(tweets, twitters){
+  var them = $('#twit').val();
+  var that = $('#twit2').val();
   $(function () {
       $('#examplegraph').highcharts({
           chart: {
@@ -39,7 +42,7 @@ function tweetGraph(tweets, twitters){
               plotShadow: false
           },
           title: {
-              text: 'Yours<br>VS.<br>Theirs',
+              text: '',
               align: 'center',
               verticalAlign: 'middle',
               y: 40
@@ -56,7 +59,7 @@ function tweetGraph(tweets, twitters){
             },
               pie: {
                   dataLabels: {
-                      enabled: true,
+                      enabled: false,
                       distance: -40,
                       style: {
                           fontWeight: 'bold',
@@ -71,14 +74,14 @@ function tweetGraph(tweets, twitters){
           },
           series: [{
               type: 'pie',
-              name: 'Javascript vs. Python',
+              name: '',
               innerSize: '50%',
               data: [
                   ['Yours', tweets],
                   ['Theirs', twitters],
 
                   {
-                      name: 'Proprietary or Undetectable',
+                      name: '',
                       y: 0.2,
                       dataLabels: {
                           enabled: false
