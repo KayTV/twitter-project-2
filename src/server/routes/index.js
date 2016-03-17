@@ -18,23 +18,22 @@ var tweets1 = [];
 var tweets2 = [];
 var tweet;
 var tweet2;
-console.log(tweet);
-console.log(tweet2);
+// console.log(tweet);
+// console.log(tweet2);
 var stream;
 
-// client.stream('statuses/filter', {track: 'javascript'}, function(stream) {
-//   stream.on('data', function(tweet) {
-//     console.log(tweet.text);
-//     tweets1.push(tweet.text);
-//   });
-//
-//   stream.on('error', function(error) {
-//     throw error;
-//   });
-//   client.currentstream = stream;
-// });
+
+
+function authorize(req,res, next){
+  if (!req.user){
+    next();
+  } else {
+    res.status(403).send('Forbidden');
+  }
+}
 
 router.get('/', function(req, res, next) {
+
   res.render('index', { title: 'Smashtag!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
@@ -42,19 +41,66 @@ router.get('/savedcharts', function(req, res, next) {
   res.render('savedcharts', { title: 'Saved Charts!', profile: req.user, tweets: tweets1, twitters: tweets2 })
 });
 
-router.get('/charts', function(req, res, next) {
-  res.render('charts', { title: 'Match Up Your Hashtags', profile: req.user, tweets: tweets1, twitters: tweets2 })
+router.get('/profile/:id', function(req, res, next) {
+  console.log(req.user);
+  var id = req.user.id;
+  knex('saved_hashes').select().where('user_id', id)
+  .then(function(hashes){
+    res.render('profile', { 
+      title: req.user.display_name+' User Profile', 
+      profile: req.user, 
+      hashes: hashes
+    });
+  })
+  .catch(function(err){
+    res.status(500);
+    res.render('error', {message: 'There was an error'});
+  })
 });
+
+router.get('/charts', function(req, res, next) {
+  res.render('charts', { 
+    title: 'Match Up Your Hashtags', 
+    profile: req.user, 
+    tweets: tweets1, 
+    twitters: tweets2,
+    input1: req.body.twit,
+    input2: req.body.twit2 })
+});
+
+// router.post('/')
 
 router.post('/charts', function(req, res, next) {
   tweet = req.body.twit;
   tweet2 = req.body.twit2
+
+  if (req.user){
+    console.log('test');
+    knex('saved_hashes').insert({
+      hash1: req.body.twit,
+      hash2: req.body.twit2,
+      user_id: req.user.id
+      })
+     .then(function(data){
+      console.log(data);
+     })
+     .catch(function(err){
+      console.log(err)
+     })
+    }
+
   restart(tweet, tweet2);
-  res.redirect('/charts')
+
+  // res.redirect('/charts')
 });
 
+
 router.get('/stoptweets', function(req, res, next){
-  stopTweets();
+  if (stream){
+    stopTweets();
+  } else {
+    res.redirect('/charts');
+  }
 })
 
 router.get('/tweetsjson', function(req, res, next) {
@@ -78,40 +124,18 @@ function restart(hashtag, hashtag2) {
     if(tweet.text){
       tweets1.push(tweet.text);
     }
-    console.log(tweet.text);
 
   })
   stream.on('channels/stream2', function(tweet){
     if(tweet.text){
       tweets2.push(tweet.text);
     }
-    console.log(tweet.text);
   })
 }
 
 function stopTweets() {
     stream.stop();
-    // stream.stop(tweet2);//closes the stream connected to Twitter
 }
-
-
-
-// function restart (hashtag) {
-//   client.currentstream.destroy();
-//   tweets1 = [];
-//   client.stream('statuses/filter', {track: hashtag}, function(stream) {
-//     stream.on('data', function(tweet) {
-//       console.log(tweet.text);
-//       tweets1.push(tweet.text);
-//     });
-//
-//     stream.on('error', function(error) {
-//       throw error;
-//     });
-//     client.currentstream = stream;
-//   });
-// }
-//
 
 
 
